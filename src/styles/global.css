@@ -110,7 +110,7 @@ h1 em, .contact-section h2 em { color: var(--accent); font-style: normal; }
 .portrait-stamp .owl-mark { width: 42px; height: 42px; }
 .portrait-coordinate { position: absolute; bottom: 28px; left: -33px; writing-mode: vertical-rl; rotate: 180deg; color: var(--dim); font-size: 9px; font-weight: 700; letter-spacing: .2em; }
 
-.stack-marquee { display: grid; grid-template-columns: 150px minmax(0,1fr); align-items: stretch; min-height: 72px; border-bottom: 1px solid var(--line-strong); background: #0d2241; }
+.stack-marquee { display: grid; grid-template-columns: max(175px, calc((100vw - var(--container)) / 2 + 125px)) minmax(0,1fr); align-items: stretch; min-height: 72px; border-bottom: 1px solid var(--line-strong); background: #0d2241; }
 .stack-marquee-label { position: relative; z-index: 1; display: flex; align-items: center; gap: 11px; padding-left: max(36px, calc((100vw - var(--container)) / 2)); color: var(--accent); background: #102a50; font-size: 10px; font-weight: 700; letter-spacing: .16em; white-space: nowrap; }
 .stack-label-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
 .stack-marquee-viewport { display: flex; align-items: center; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 2%, #000 98%, transparent); }

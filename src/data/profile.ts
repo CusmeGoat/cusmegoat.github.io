@@ -149,7 +149,7 @@ export const profile: Profile = {
       ],
     },
   ],
-  stack: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'JavaScript', 'Oracle SQL', 'PL/SQL', 'MongoDB', 'PostgreSQL', 'APIs REST', 'Jenkins', 'GitLab', 'GitHub', 'Docker', 'Kubernetes', 'OpenShift 4', 'Postman', 'SonarQube', 'React Native', 'Node.js', 'Python', 'FastAPI', 'C#', 'Dart'],
+  stack: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'JavaScript', 'Oracle SQL', 'PL/SQL', 'MongoDB', 'PostgreSQL', 'MySQL', 'APIs REST', 'JWT', 'Jenkins', 'GitLab', 'GitHub', 'Docker', 'Kubernetes', 'OpenShift 4', 'Nginx', 'Postman', 'SonarQube', 'React Native', 'Node.js', 'Express', 'Python', 'FastAPI', 'pgvector', 'RabbitMQ', 'PrimeNG', 'C#', '.NET', 'Dart', 'Flutter', 'TypeORM', 'Power BI', 'Playwright', 'MCP', 'AWS'],
   projects: [
     {
       title: 'AgroCommunity',
