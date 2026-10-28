@@ -1,0 +1,21 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section id="contacto" class="contact-section">
+  <div class="container contact-grid">
+    <div data-reveal>
+      <div class="section-label"><span>05</span><span>CONTACTO</span></div>
+      <h2>Conversemos sobre <em>lo que sigue.</em></h2>
+      <p>Si buscas un perfil que conecte desarrollo Full Stack y prácticas DevOps, estaré encantado de conversar.</p>
+      <a class="button button-primary" href={`mailto:${profile.email}`}>Escribirme un correo <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="contact-card" data-reveal>
+      <span class="contact-card-label">ENCUÉNTRAME EN</span>
+      <a href={`mailto:${profile.email}`}><span>Correo</span><strong>{profile.email}</strong><span aria-hidden="true">↗</span></a>
+      <a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><strong>José Carlos Cusme Montenegro</strong><span aria-hidden="true">↗</span></a>
+      <a href={profile.github} target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CusmeGoat</strong><span aria-hidden="true">↗</span></a>
+      <div class="contact-card-footer"><button type="button" data-copy-email={profile.email}>Copiar correo</button><span aria-live="polite" data-copy-status></span></div>
+    </div>
+  </div>
+</section>

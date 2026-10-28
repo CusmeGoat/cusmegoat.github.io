@@ -1,0 +1,26 @@
+---
+import { profile } from '../data/profile';
+import SectionIntro from './SectionIntro.astro';
+---
+
+<section id="capacidades" class="section capabilities-section">
+  <div class="container">
+    <SectionIntro number="03" eyebrow="CONOCIMIENTOS" title="El stack detrás de mi trabajo." description="Tecnologías que aplico en el desarrollo, la integración y la entrega de soluciones." />
+    <div class="capability-grid">
+      {profile.capabilities.map((capability) => (
+        <article class="capability-card" data-reveal>
+          <div class="capability-top"><span>{capability.number}</span><span class="capability-arrow" aria-hidden="true">↗</span></div>
+          <h3>{capability.title}</h3>
+          <p>{capability.description}</p>
+          <ul class="tech-list" aria-label={`Tecnologías de ${capability.title}`}>
+            {capability.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <div class="language-strip" data-reveal>
+      <span>Lenguajes con los que he trabajado</span>
+      <div>{profile.languages.map((language) => <span>{language}</span>)}</div>
+    </div>
+  </div>
+</section>

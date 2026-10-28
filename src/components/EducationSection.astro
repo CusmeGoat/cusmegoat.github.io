@@ -1,0 +1,25 @@
+---
+import { profile } from '../data/profile';
+import SectionIntro from './SectionIntro.astro';
+---
+
+<section id="formacion" class="section education-section">
+  <div class="container education-grid">
+    <div>
+      <SectionIntro number="04" eyebrow="FORMACIÓN" title="Aprender también es parte del trabajo." />
+      <div class="degree-card" data-reveal>
+        <span class="degree-icon" aria-hidden="true">◎</span>
+        <div><span class="degree-label">TÍTULO UNIVERSITARIO</span><h3>Ingeniería en Sistemas de Información</h3><p>Universidad de Guayaquil · Facultad de Ingeniería Industrial</p></div>
+      </div>
+    </div>
+    <div class="training-panel" data-reveal>
+      <div class="training-header"><span>FORMACIÓN COMPLEMENTARIA</span><span aria-hidden="true">↗</span></div>
+      <ul>
+        {profile.training.map((item) => (
+          <li><span>{item.area}</span><strong>{item.title}</strong></li>
+        ))}
+      </ul>
+      <p>Además de la experiencia práctica, mantengo una formación continua en desarrollo, datos y despliegue.</p>
+    </div>
+  </div>
+</section>

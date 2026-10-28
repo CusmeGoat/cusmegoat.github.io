@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import ProfileSection from '../components/ProfileSection.astro';
+import ExperienceSection from '../components/ExperienceSection.astro';
+import CapabilitiesSection from '../components/CapabilitiesSection.astro';
+import EducationSection from '../components/EducationSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<BaseLayout
+  title="José Carlos Cusme | Full Stack & DevOps"
+  description="Portafolio de José Carlos Cusme Montenegro, ingeniero en Sistemas de Información con experiencia en desarrollo Full Stack y DevOps en Ecuador."
+>
+  <SiteHeader />
+  <Hero />
+  <main id="contenido">
+    <ProfileSection />
+    <ExperienceSection />
+    <CapabilitiesSection />
+    <EducationSection />
+    <ContactSection />
+  </main>
+  <SiteFooter />
+</BaseLayout>

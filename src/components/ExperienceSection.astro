@@ -1,0 +1,25 @@
+---
+import { profile } from '../data/profile';
+import SectionIntro from './SectionIntro.astro';
+---
+
+<section id="experiencia" class="section experience-section">
+  <div class="container">
+    <SectionIntro number="02" eyebrow="TRAYECTORIA" title="Experiencia que conecta las piezas." description="Del desarrollo y soporte a la integración de servicios, datos y despliegues." />
+    <div class="timeline">
+      {profile.experience.map((item, index) => (
+        <article class:list={['timeline-item', { 'timeline-featured': index === 0 }]} data-reveal>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-date">{item.period}</div>
+          <div class="timeline-card">
+            <div class="timeline-card-top"><span class="card-index">0{index + 1} / EXPERIENCIA</span>{item.type && <span class="experience-type">{item.type}</span>}</div>
+            <h3>{item.role}</h3>
+            <p class="organization">{item.organization}</p>
+            <p class="timeline-summary">{item.summary}</p>
+            <ul>{item.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

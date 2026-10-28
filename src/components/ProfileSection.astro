@@ -1,0 +1,17 @@
+---
+import { profile } from '../data/profile';
+import SectionIntro from './SectionIntro.astro';
+---
+
+<section id="perfil" class="section profile-section">
+  <div class="container profile-grid">
+    <SectionIntro number="01" eyebrow="PERFIL" title="Tecnología con visión completa." />
+    <div class="profile-content" data-reveal>
+      <p class="lead">{profile.about}</p>
+      <div class="profile-points">
+        <div><span class="point-icon" aria-hidden="true">↗</span><strong>Desarrollo</strong><p>Interfaces, APIs y datos conectados para resolver necesidades concretas.</p></div>
+        <div><span class="point-icon" aria-hidden="true">⌘</span><strong>Entrega</strong><p>Automatización y operación como parte del ciclo de vida de cada solución.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
