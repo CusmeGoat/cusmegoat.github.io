@@ -25,11 +25,32 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical.href} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <script is:inline>
+      try {
+        if (localStorage.getItem('portfolio-theme') === 'light') document.documentElement.dataset.theme = 'light';
+      } catch { /* El sitio sigue funcionando si el navegador bloquea el almacenamiento. */ }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <slot />
     <script>
+      const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+      const syncThemeToggle = () => {
+        const isLight = document.documentElement.dataset.theme === 'light';
+        const label = isLight ? 'Activar tema oscuro' : 'Activar tema claro';
+        themeToggle?.setAttribute('aria-label', label);
+        themeToggle?.setAttribute('title', label);
+        document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute('content', isLight ? '#f4f8ff' : '#07101f');
+      };
+      syncThemeToggle();
+      themeToggle?.addEventListener('click', () => {
+        const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = nextTheme;
+        try { localStorage.setItem('portfolio-theme', nextTheme); } catch { /* El cambio sigue activo durante esta visita. */ }
+        syncThemeToggle();
+      });
+
       const motionAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (motionAllowed && 'IntersectionObserver' in window) {
         const revealItems = document.querySelectorAll<HTMLElement>('[data-reveal]');

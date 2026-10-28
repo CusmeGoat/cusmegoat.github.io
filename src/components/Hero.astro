@@ -1,5 +1,6 @@
 ---
 import { profile } from '../data/profile';
+import OwlMark from './OwlMark.astro';
 ---
 
 <section id="inicio" class="hero">
@@ -10,7 +11,7 @@ import { profile } from '../data/profile';
       <h1>Construyo soluciones <em>de extremo a extremo.</em></h1>
       <p class="hero-description">{profile.introduction}</p>
       <div class="hero-actions">
-        <a class="button button-primary" href="#experiencia">Explorar mi experiencia <span aria-hidden="true">↗</span></a>
+        <a class="button button-primary" href="#proyectos">Ver proyectos <span aria-hidden="true">↗</span></a>
         <a class="button button-secondary" href={profile.cv} download>Descargar CV <span aria-hidden="true">↓</span></a>
       </div>
       <div class="hero-meta">
@@ -19,25 +20,17 @@ import { profile } from '../data/profile';
       </div>
     </div>
 
-    <div class="hero-visual" data-reveal aria-label="Búho tecnológico y áreas de trabajo: interfaz, servicios, datos y entrega">
-      <div class="visual-topline">
-        <span class="visual-indicator"><span></span><span></span><span></span></span>
-        <span>VISIÓN DE EXTREMO A EXTREMO</span>
-        <span>01 / 04</span>
+    <div class="hero-visual" data-reveal>
+      <div class="portrait-frame">
+        <img src="/jose-carlos-cusme.png" alt="Retrato de José Carlos Cusme Montenegro" width="533" height="800" fetchpriority="high" decoding="async" />
+        <div class="portrait-shine" aria-hidden="true"></div>
+        <div class="portrait-identity">
+          <span>JOSÉ CARLOS CUSME</span>
+          <strong>Full Stack <span aria-hidden="true">✦</span> DevOps</strong>
+        </div>
       </div>
-      <div class="visual-core">
-        <div class="owl-halo" aria-hidden="true"></div>
-        <div class="owl-orbit" aria-hidden="true"></div>
-        <img class="owl-hero-image" src="/owl-hero.png" alt="Ilustración de un búho de ojos azules con detalles de circuitos" width="1254" height="1254" fetchpriority="high" decoding="async" />
-        <span class="owl-caption">FULL STACK <span aria-hidden="true">✦</span> DEVOPS</span>
-      </div>
-      <ol class="visual-flow">
-        <li><span>01</span><strong>Interfaz</strong><small>Angular</small></li>
-        <li><span>02</span><strong>Servicios</strong><small>Spring Boot</small></li>
-        <li><span>03</span><strong>Datos</strong><small>Oracle · MongoDB</small></li>
-        <li><span>04</span><strong>Entrega</strong><small>Jenkins · OpenShift</small></li>
-      </ol>
-      <div class="visual-bottomline"><span>CONSTRUIR</span><span>INTEGRAR</span><span>DESPLEGAR</span></div>
+      <div class="portrait-stamp" aria-hidden="true"><OwlMark /></div>
+      <div class="portrait-coordinate" aria-hidden="true">EC / 02°11′ S</div>
     </div>
   </div>
   <div class="hero-bottom"><span>Desliza para conocer mi trabajo</span><span aria-hidden="true">↓</span></div>

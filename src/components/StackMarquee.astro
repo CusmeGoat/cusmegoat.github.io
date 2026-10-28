@@ -1,0 +1,16 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="stack-marquee" aria-label="Tecnologías con las que he trabajado y aprendido">
+  <div class="stack-marquee-label"><span class="stack-label-dot" aria-hidden="true"></span> MI STACK</div>
+  <div class="stack-marquee-viewport">
+    <div class="stack-marquee-track">
+      {[0, 1].map((copy) => (
+        <ul class="stack-marquee-list" aria-hidden={copy === 1 ? 'true' : undefined}>
+          {profile.stack.map((technology) => <li>{technology}</li>)}
+        </ul>
+      ))}
+    </div>
+  </div>
+</section>

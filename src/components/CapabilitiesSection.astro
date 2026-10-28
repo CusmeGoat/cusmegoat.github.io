@@ -5,13 +5,16 @@ import SectionIntro from './SectionIntro.astro';
 
 <section id="capacidades" class="section capabilities-section">
   <div class="container">
-    <SectionIntro number="03" eyebrow="CONOCIMIENTOS" title="El stack detrás de mi trabajo." description="Tecnologías que aplico en el desarrollo, la integración y la entrega de soluciones." />
+    <SectionIntro number="03" eyebrow="HABILIDADES" title="De la idea a producción." description="Qué hago en cada etapa y con qué herramientas he trabajado." />
     <div class="capability-grid">
       {profile.capabilities.map((capability) => (
         <article class="capability-card" data-reveal>
           <div class="capability-top"><span>{capability.number}</span><span class="capability-arrow" aria-hidden="true">↗</span></div>
           <h3>{capability.title}</h3>
           <p>{capability.description}</p>
+          <ul class="capability-details" aria-label={`Actividades de ${capability.title}`}>
+            {capability.details.map((detail) => <li>{detail}</li>)}
+          </ul>
           <ul class="tech-list" aria-label={`Tecnologías de ${capability.title}`}>
             {capability.technologies.map((technology) => <li>{technology}</li>)}
           </ul>

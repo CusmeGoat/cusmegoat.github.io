@@ -1,0 +1,34 @@
+---
+import { profile } from '../data/profile';
+import SectionIntro from './SectionIntro.astro';
+---
+
+<section id="proyectos" class="section projects-section">
+  <div class="container">
+    <div class="projects-heading">
+      <SectionIntro number="04" eyebrow="PROYECTOS DESTACADOS" title="Problemas reales. Soluciones concretas." description="Una selección de trabajos explicados por el reto, mi aporte y las tecnologías utilizadas. Las descripciones de proyectos empresariales son generales." />
+      <span class="projects-aside" aria-hidden="true">CASOS / {String(profile.projects.length).padStart(2, '0')}</span>
+    </div>
+    <div class="projects-grid">
+      {profile.projects.map((project, index) => (
+        <article class:list={['project-card', { 'project-card-featured': index === 0 }]} data-reveal>
+          <div class="project-card-head"><span>{project.category}</span><span>0{index + 1} / 0{profile.projects.length}</span></div>
+          <div class="project-card-body">
+            <div class="project-title-block"><span class="project-symbol" aria-hidden="true">↗</span><h3>{project.title}</h3><p>{project.disclosure}</p></div>
+            <div class="project-facts">
+              <div><span>EL RETO</span><p>{project.challenge}</p></div>
+              <div><span>MI APORTE</span><p>{project.contribution}</p></div>
+              {project.outcome && <div><span>RESULTADO</span><p>{project.outcome}</p></div>}
+            </div>
+          </div>
+          {project.process && <div class="project-process" aria-label="Flujo de la solución">
+            {project.process.map((step, stepIndex) => <div><span>0{stepIndex + 1}</span><strong>{step}</strong></div>)}
+          </div>}
+          <ul class="project-technologies" aria-label={`Tecnologías de ${project.title}`}>
+            {project.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
