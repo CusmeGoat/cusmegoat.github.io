@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#103f3b">
+  <meta name="description" content="Control privado de ingresos, gastos y pagos mensuales.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Bolsillo Claro</title>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <section id="auth-screen" class="auth-screen" hidden>
+    <div class="auth-intro">
+      <div class="brand brand-light"><span class="brand-mark">B</span><span>Bolsillo Claro</span></div>
+      <p class="eyebrow">Tus finanzas, con claridad</p>
+      <h1>Entiende mejor tu dinero, cada día.</h1>
+      <p>Registra ingresos y gastos, lleva tus pagos al día y revisa cuánto te queda al final del mes.</p>
+      <div class="auth-art" aria-hidden="true"><span class="art-card art-one"></span><span class="art-card art-two"></span><span class="art-circle"></span></div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-card">
+        <p class="eyebrow">Bienvenido</p>
+        <h2>Entrar a mi espacio</h2>
+        <p class="muted">Usa tu cuenta para ver los mismos datos en la laptop y el celular.</p>
+        <form id="login-form">
+          <label>Correo electrónico<input name="email" type="email" autocomplete="email" required></label>
+          <label>Contraseña<input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="primary full" type="submit">Iniciar sesión</button>
+        </form>
+        <p id="auth-message" class="form-message" role="status"></p>
+        <div class="auth-divider"><span>o</span></div>
+        <button id="local-button" class="secondary full" type="button">Probar solo en este navegador</button>
+        <button id="auth-settings-button" class="text-button" type="button">Configurar sincronización</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="app-shell" class="app-shell" hidden>
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">B</span><span>Bolsillo Claro</span></div>
+      <p class="side-label">MI ESPACIO</p>
+      <nav class="side-nav" aria-label="Secciones">
+        <button class="nav-item active" data-tab="summary" type="button"><span>◫</span> Resumen</button>
+        <button class="nav-item" data-tab="movements" type="button"><span>↕</span> Movimientos</button>
+        <button class="nav-item" data-tab="bills" type="button"><span>☑</span> Pagos mensuales</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button id="settings-button" class="nav-item" type="button"><span>⚙</span> Ajustes y copia</button>
+        <button id="logout-button" class="nav-item" type="button"><span>⇥</span> Salir</button>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="mobile-brand brand"><span class="brand-mark">B</span><span>Bolsillo Claro</span></div>
+        <div class="page-title"><p class="eyebrow">MI PANEL FINANCIERO</p><h1 id="section-title">Resumen</h1></div>
+        <div class="top-actions"><span id="mode-badge" class="mode-badge"></span><button id="mobile-settings-button" class="icon-button mobile-only" aria-label="Ajustes" type="button">⚙</button></div>
+      </header>
+
+      <main class="content">
+        <div id="local-notice" class="notice" hidden><strong>Modo local:</strong> estos datos solo se guardan en este navegador. Para verlos también en el celular, configura la sincronización.</div>
+        <div class="toolbar">
+          <div><p class="eyebrow">PERÍODO ACTUAL</p><div class="month-picker"><button id="month-prev" class="icon-button" aria-label="Mes anterior" type="button">‹</button><span id="month-label"></span><button id="month-next" class="icon-button" aria-label="Mes siguiente" type="button">›</button></div></div>
+          <div class="toolbar-actions"><button id="voice-button" class="secondary" type="button">♩ <span>Registrar con voz</span></button><button id="add-button" class="primary" type="button">＋ <span>Nuevo movimiento</span></button></div>
+        </div>
+
+        <section id="summary-section" class="section-panel">
+          <div class="summary-grid"><article class="hero-card"><p>Saldo del mes</p><strong id="balance-value">$0,00</strong><span>Ingresos menos gastos del período</span><div class="hero-decoration" aria-hidden="true"></div></article><article class="metric-card"><div class="metric-icon income-icon">↙</div><p>Ingresos</p><strong id="income-value">$0,00</strong></article><article class="metric-card"><div class="metric-icon expense-icon">↗</div><p>Gastos</p><strong id="expense-value">$0,00</strong></article></div>
+          <div class="detail-grid"><article class="surface"><div class="surface-head"><div><p class="eyebrow">DÓNDE FUE TU DINERO</p><h2>Gastos por categoría</h2></div><span id="category-total" class="subtle"></span></div><div id="category-list" class="category-list"></div></article><article class="surface insight"><div class="insight-icon">✦</div><p class="eyebrow">UNA IDEA PARA ESTE MES</p><h2>Tu siguiente paso</h2><p id="recommendation-text"></p><div class="insight-footer"><span>Gastos opcionales</span><strong id="optional-value"></strong></div></article></div>
+          <article class="surface annual-card"><div><p class="eyebrow">PANORAMA ANUAL</p><h2 id="annual-title">Balance del año</h2></div><div class="annual-metrics"><div><span>Ingresos</span><strong id="annual-income"></strong></div><div><span>Gastos</span><strong id="annual-expense"></strong></div><div><span>Saldo</span><strong id="annual-balance"></strong></div></div></article>
+        </section>
+
+        <section id="movements-section" class="section-panel" hidden><div class="section-head"><div><p class="eyebrow">TU ACTIVIDAD</p><h2>Movimientos del mes</h2></div><span id="movement-count" class="count-pill"></span></div><div id="movement-list" class="records"></div></section>
+        <section id="bills-section" class="section-panel" hidden><div class="section-head"><div><p class="eyebrow">TUS COMPROMISOS</p><h2>Pagos mensuales</h2></div><button id="add-bill-button" class="secondary" type="button">＋ Añadir pago</button></div><p class="section-description">Al registrar un pago, el gasto aparece una sola vez en tus movimientos y se marca como pagado.</p><div id="bill-list" class="records"></div></section>
+      </main>
+    </div>
+    <nav class="bottom-nav" aria-label="Secciones móviles"><button class="active" data-tab="summary" type="button"><span>◫</span>Resumen</button><button data-tab="movements" type="button"><span>↕</span>Movimientos</button><button data-tab="bills" type="button"><span>☑</span>Pagos</button></nav>
+  </div>
+
+  <dialog id="movement-dialog" class="modal"><form id="movement-form" method="dialog"><div class="modal-head"><div><p class="eyebrow">REGISTRO</p><h2 id="movement-dialog-title">Nuevo movimiento</h2></div><button class="close-button" type="button" data-close="movement-dialog" aria-label="Cerrar">×</button></div><div class="type-switch"><label><input type="radio" name="kind" value="expense" checked><span>Gasto</span></label><label><input type="radio" name="kind" value="income"><span>Ingreso</span></label></div><label>Descripción<input name="title" type="text" maxlength="100" placeholder="Ej. Internet, sueldo, almuerzo" required></label><div class="form-grid"><label>Importe en USD<input name="amount" type="text" inputmode="decimal" placeholder="0,00" required></label><label>Fecha<input name="date" type="date" required></label></div><label id="category-field">Categoría<select name="category"></select></label><label id="essential-field" class="check-row"><input name="essential" type="checkbox"><span>Es un gasto necesario</span></label><p id="movement-error" class="form-message" role="alert"></p><div class="modal-actions"><button class="secondary" type="button" data-close="movement-dialog">Omitir</button><button class="primary" type="submit">Guardar movimiento</button></div></form></dialog>
+
+  <dialog id="bill-dialog" class="modal"><form id="bill-form" method="dialog"><div class="modal-head"><div><p class="eyebrow">PAGO RECURRENTE</p><h2>Añadir pago mensual</h2></div><button class="close-button" type="button" data-close="bill-dialog" aria-label="Cerrar">×</button></div><label>Nombre<input name="title" type="text" maxlength="100" placeholder="Ej. Internet" required></label><div class="form-grid"><label>Día de vencimiento<input name="dueDay" type="number" min="1" max="31" required></label><label>Importe previsto (opcional)<input name="expected" type="text" inputmode="decimal" placeholder="0,00"></label></div><label>Categoría<select name="category"></select></label><p id="bill-error" class="form-message" role="alert"></p><div class="modal-actions"><button class="secondary" type="button" data-close="bill-dialog">Cancelar</button><button class="primary" type="submit">Guardar pago</button></div></form></dialog>
+
+  <dialog id="voice-dialog" class="modal"><div class="modal-head"><div><p class="eyebrow">ENTRADA RÁPIDA</p><h2>Cuéntame tus movimientos</h2></div><button class="close-button" type="button" data-close="voice-dialog" aria-label="Cerrar">×</button></div><p class="muted">Di: «Pagué 30 dólares de internet y compré una torta de 5». Revisarás cada movimiento antes de guardarlo.</p><button id="listen-button" class="voice-record" type="button"><span>🎙</span><strong>Hablar</strong><small>Solo reconocimiento local compatible</small></button><p id="voice-message" class="form-message" role="status"></p><label>Texto reconocido o escrito<textarea id="voice-text" rows="4" placeholder="Escribe aquí si tu navegador no admite voz local"></textarea></label><div class="modal-actions"><button class="secondary" type="button" data-close="voice-dialog">Cancelar</button><button id="parse-voice-button" class="primary" type="button">Revisar movimientos</button></div></dialog>
+
+  <dialog id="settings-dialog" class="modal"><div class="modal-head"><div><p class="eyebrow">AJUSTES</p><h2>Datos y sincronización</h2></div><button class="close-button" type="button" data-close="settings-dialog" aria-label="Cerrar">×</button></div><p class="muted">En modo local, los datos quedan solo en este navegador. Para sincronizar, conecta tu proyecto Supabase.</p><form id="config-form"><label>URL del proyecto Supabase<input name="url" type="url" placeholder="https://...supabase.co" required></label><label>Clave pública (publishable key)<input name="key" type="text" placeholder="sb_publishable_..." required></label><p class="help-text">Nunca introduzcas aquí la clave secreta ni la service role key.</p><div class="modal-actions"><button class="secondary" type="button" data-close="settings-dialog">Cerrar</button><button class="primary" type="submit">Guardar configuración</button></div></form><hr><div class="backup-actions"><button id="export-button" class="secondary" type="button">↓ Exportar copia JSON</button><label class="secondary file-button">↑ Importar copia<input id="import-input" type="file" accept="application/json,.json" hidden></label></div><p id="settings-message" class="form-message" role="status"></p></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
