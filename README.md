@@ -26,7 +26,7 @@ La organización sigue **composición de componentes** y **separación entre dat
 | `src/components/` | Secciones reutilizables: presentación, franja de tecnologías, perfil, experiencia, habilidades, proyectos, formación y contacto. |
 | `src/styles/global.css` | Colores, tipografía, diseño adaptable y reglas de movimiento reducido. |
 | `public/` | Archivos que se copian tal cual al sitio, incluidos el retrato, el icono y el CV público. |
-| `scripts/build_public_cv.py` | Genera la versión pública del CV en PDF. |
+| `scripts/build_public_cv.py` | Genera tres diseños PDF del mismo CV público desde un único conjunto de datos. |
 | `.github/workflows/deploy.yml` | Comprueba, construye y publica el sitio automáticamente. |
 | `package.json` / `package-lock.json` | Dependencias y comandos de desarrollo, con versiones reproducibles. |
 | `astro.config.mjs` / `tsconfig.json` | Configuración de Astro y TypeScript. |
@@ -54,7 +54,7 @@ Para cambiar textos, fechas o enlaces, edita `src/data/profile.ts`. Para cambiar
 
 Los casos empresariales usan títulos genéricos y descripciones públicas de alto nivel; no incluyen código, clientes, nombres internos ni enlaces a repositorios privados. Antes de editar un caso, verifica que el reto, el aporte personal y el stack puedan divulgarse.
 
-El CV descargable está en `public/cv-jose-carlos-cusme-montenegro.pdf`. Revisa siempre su contenido antes de publicarlo. Para regenerarlo, instala `reportlab` y ejecuta `python scripts/build_public_cv.py`. El CV original privado no forma parte del repositorio.
+El botón **Descargar CV** ofrece tres diseños PDF: sobrio ATS, moderno con foto y editorial. Los archivos están en `public/cv-jose-carlos-cusme-{ats,moderno,editorial}.pdf`; la URL antigua `public/cv-jose-carlos-cusme-montenegro.pdf` apunta a una copia del diseño moderno para conservar enlaces existentes. Todos se generan con los mismos datos definidos en `scripts/build_public_cv.py`. Para regenerarlos, instala `reportlab` y `pypdf` y ejecuta `python scripts/build_public_cv.py`. El script comprueba que no aparezcan teléfono, segundo correo ni nombres internos. Revisa los PDF antes de publicar; el CV original privado no forma parte del repositorio.
 
 ## Publicación
 

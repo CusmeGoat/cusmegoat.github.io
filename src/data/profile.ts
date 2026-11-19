@@ -31,6 +31,13 @@ export interface FeaturedProject {
   process?: string[];
 }
 
+export interface CvOption {
+  name: string;
+  description: string;
+  href: string;
+  recommended?: boolean;
+}
+
 export interface Profile {
   name: string;
   role: string;
@@ -40,7 +47,7 @@ export interface Profile {
   email: string;
   github: string;
   linkedin: string;
-  cv: string;
+  cvOptions: CvOption[];
   experience: Experience[];
   capabilities: Capability[];
   stack: string[];
@@ -60,7 +67,11 @@ export const profile: Profile = {
   email: 'cusmegoat2003@hotmail.com',
   github: 'https://github.com/CusmeGoat',
   linkedin: 'https://www.linkedin.com/in/jose-carlos-cusme-montenegro-a87b432b0/',
-  cv: '/cv-jose-carlos-cusme-montenegro.pdf',
+  cvOptions: [
+    { name: 'Sobrio ATS', description: 'Lectura lineal para postulaciones', href: '/cv-jose-carlos-cusme-ats.pdf' },
+    { name: 'Moderno', description: 'Diseño azul con fotografía', href: '/cv-jose-carlos-cusme-moderno.pdf', recommended: true },
+    { name: 'Editorial', description: 'Diseño tipográfico elegante', href: '/cv-jose-carlos-cusme-editorial.pdf' },
+  ],
   experience: [
     {
       role: 'Desarrollador full stack / Ingeniero de proyectos',

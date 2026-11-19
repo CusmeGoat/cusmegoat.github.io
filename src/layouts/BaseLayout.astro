@@ -72,6 +72,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-email]');
       const copyStatus = document.querySelector<HTMLElement>('[data-copy-status]');
       const mobileMenu = document.querySelector<HTMLDetailsElement>('.mobile-nav');
+      const cvDownload = document.querySelector<HTMLDetailsElement>('.cv-download');
+      document.addEventListener('click', (event) => {
+        if (cvDownload?.open && event.target instanceof Node && !cvDownload.contains(event.target)) cvDownload.open = false;
+      });
+      cvDownload?.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          cvDownload.open = false;
+          cvDownload.querySelector('summary')?.focus();
+        }
+      });
+      cvDownload?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { cvDownload.open = false; }));
       mobileMenu?.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           mobileMenu.open = false;

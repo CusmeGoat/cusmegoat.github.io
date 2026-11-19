@@ -12,7 +12,18 @@ import OwlMark from './OwlMark.astro';
       <p class="hero-description">{profile.introduction}</p>
       <div class="hero-actions">
         <a class="button button-primary" href="#proyectos">Ver proyectos <span aria-hidden="true">↗</span></a>
-        <a class="button button-secondary" href={profile.cv} download>Descargar CV <span aria-hidden="true">↓</span></a>
+        <details class="cv-download">
+          <summary class="button button-secondary" aria-label="Elegir versión del CV para descargar">Descargar CV <span aria-hidden="true">⌄</span></summary>
+          <div class="cv-download-panel">
+            <p>ELIGE UNA VERSIÓN EN PDF</p>
+            {profile.cvOptions.map((option) => (
+              <a href={option.href} download>
+                <span><strong>{option.name}</strong>{option.recommended && <em>Recomendado</em>}<small>{option.description}</small></span>
+                <span aria-hidden="true">↓</span>
+              </a>
+            ))}
+          </div>
+        </details>
       </div>
       <div class="hero-meta">
         <span>{profile.location}</span>
